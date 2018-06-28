@@ -9,11 +9,11 @@ $(document).ready(function () {
     var beers = [];
     var foodPair = 'This beer will go perfectly with:';
 
-    // $.getJSON(url, function (data) {
-    //     beers.push(data);
-    //     console.log('success');
-    //     readBeers(beers);
-    // }, "jsonp");
+    $.getJSON(url, function (data) {
+        beers.push(data);
+        console.log('success');
+        readBeers(beers);
+    }, "jsonp");
 
     var populateBeerContainer = function (beer) {
         $("#beers-container").append(

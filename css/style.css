@@ -20,7 +20,7 @@ header {
 }
 
 header h1 {
-    font-size: 7em;
+    font-size: 6.5em;
     font-family: 'Rock Salt', cursive;
     font-family: 'Permanent Marker', cursive;
     color: white;
@@ -34,7 +34,7 @@ header h1 {
 
 nav {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .4));
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     text-align: right;
@@ -53,11 +53,22 @@ nav li, a{
     text-decoration: none;
 }
 
+.favourites-container{
+    text-align: right;
+    padding: 10px 10px;
+}
+
+.favourites-container a{
+    color: black;
+}
+
+
 .beer-abv::after {
     content: "%";
 }
 
 #beers-container {
+    text-align: center;
     background-color: blanchedalmond;
     width: 100%;
     overflow: auto;
@@ -115,8 +126,20 @@ nav li, a{
 
 footer {
     display: block;
+    background-color: grey;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+footer p{
+    margin: 0px 0px;
 }
 
 .float-left {
     float: left;
+}
+
+.italic{
+    font-style: italic;
 }
