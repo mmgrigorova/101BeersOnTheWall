@@ -48,7 +48,7 @@ nav li{
     margin: 0 10px;
 }
 
-nav li, a{
+nav li{
     color: white;
     text-decoration: none;
 }
@@ -69,11 +69,32 @@ nav li, a{
 
 #beers-container {
     text-align: center;
-    background-color: blanchedalmond;
+    background-color: white;
     width: 100%;
     overflow: auto;
     display: block;
-    padding: 5px 5px;
+    padding: 5px 10px;
+    margin: 0 auto;
+}
+
+
+.beer-box {
+    border: solid 1px blue;
+    border-radius: 2px;
+    float: left;
+    text-align: center;
+    height: 430px;
+    width: 23%;
+    padding: 2% 2%;
+    margin: 5px 5px;
+}
+
+.beer-box:first-of-type{
+    margin-left:10px;
+}
+
+.beer-box:last-of-type{
+    margin-right:10px;
 }
 
 #beers-container h1, h2, h3, h4{
@@ -86,14 +107,6 @@ nav li, a{
     text-align: center;
 }
 
-.beer-box {
-    border: solid 1px blue;
-    border-radius: 2px;
-    float: left;
-    text-align: center;
-    width: 23%;
-    padding: 2% 2%;
-}
 
 .favourite-holder {
     background-image: url("resources/hearts.png");
