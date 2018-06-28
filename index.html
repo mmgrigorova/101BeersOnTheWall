@@ -7,11 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>101 Beers on the Wall</title>
     <link rel="shortcut icon" href="css/resources/fav.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt|Permanent+Marker|Oranienbaum|PT+Sans|Roboto|Copse" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Oswald" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
+
 </head>
 
 <body>
@@ -19,31 +22,28 @@
         <nav>
             <ul>
                 <li>
-                    <a href="index.html">Beers</a>
-                </li>
-                <li>
                     <a href="index.html" id="favourites-call">Favourites</a>
                 </li>
             </ul>
         </nav>
-        <img class="header-img" src="https://images.unsplash.com/photo-1516920846492-81bc6da9fc38?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a9cfc2f2e1c3766f7de7c61d9438a55a&auto=format&fit=crop&w=2849&q=80"
-        />
         <h1>
             Discover your beer
         </h1>
+
     </header>
 
     <main>
         <div class="modal-background">
-            <div class="modal-content" >
+            <div class="modal-content">
                 <div class="favourite-holder"> </div>
                 <h1 class="beer-name"></h1>
                 <img src="" alt="" class="modal-image float-left">
                 <h2></h2>
                 <div class="beer-abv"></div>
-                <button class="more-info"></button>
+                <h3>Description</h3>
                 <p class="beer-description">
                 </p>
+                <h3>Tips from the Brewer</h3>
                 <p class="beer-tips">
                 </p>
                 <p class="food-pair">This beer will go perfectly with:</p>
@@ -52,14 +52,18 @@
             </div>
         </div>
         <section id="beers-container">
-            <!-- <article class="beer-box" id="192">
+            <h1 class="beer-headline">The Brewdog Catalogue</h1>
+            <h2 class="beer-headline">101 Beers on the Wall</h2>
+
+            <div class="clearfix"></div>
+            <article class="beer-box" id="192">
                 <div class="favourite-holder"> </div>
                 <h1 class="beer-name">Punk IPA 2007 - 2010</h1>
                 <img src="https://images.punkapi.com/v2/192.png" alt="Punk IPA 2007 - 2010">
                 <h2>Post Modern Classic. Spiky. Tropical. Hoppy.</h2>
                 <div class="beer-abv">6</div>
                 <button class="more-info">More info</button>
-            </article> -->
+            </article>
         </section>
     </main>
     <footer class="clearfix">
