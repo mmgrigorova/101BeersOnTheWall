@@ -33,17 +33,20 @@ $(document).ready(function () {
             })
         );
 
-        $article.append(
-            $("<h1></h1>")
-            .addClass("beer-name")
-            .html(beer.name)
-        );
+   
         $article.append($("<img />")
             .attr("src", beer.image_url)
             .attr("alt", beer.name)
         );
 
+        $article.append(
+            $("<h1></h1>")
+            .addClass("beer-name")
+            .html(beer.name)
+        );
+
         $article.append($("<h2></h2>")
+            .addClass("center")
             .html(beer.tagline)
         );
 
