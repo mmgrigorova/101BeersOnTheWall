@@ -4,10 +4,15 @@
 
 body {
     margin: 0px 0px 0px 0px;
-    font-family: 'PT Sans', sans-serif;
+    /* font-family: 'PT Sans', sans-serif;
     font-family: 'Roboto', sans-serif;
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif; */
+    font-family: 'Lato', sans-serif;
     color: #2a252c;
+}
+
+p, li{
+    font-size: 0.9em;
 }
 
 header {
@@ -53,6 +58,11 @@ nav li,
 nav a {
     color: white;
     text-decoration: none;
+    margin: 0px 0px;
+}
+
+.beer-headline{
+    margin: 25px 0;
 }
 
 .favourites-container {
@@ -74,7 +84,7 @@ nav a {
     /* width: 90%; */
     overflow: auto;
     display: inline-block;
-    margin: 0px auto;
+    margin: 0px auto 20px auto;
     /* position: absolute; */
     /* left: 50px; */
     width: calc(100% - 100px);
@@ -144,7 +154,7 @@ main h2 {
     top: 0;
     right: 0;
     display: inline-block;
-    margin: 5px 5px 0px 0px;
+    margin: 10px 10px 0px 0px;
 }
 
 .beer-box img {
@@ -177,8 +187,13 @@ footer {
     font-size: 0.8em;
 }
 
-footer p {
+footer p, {
     margin: 0px 0px;
+}
+
+footer a{
+    margin: 0px 0px;
+    display: inline;
 }
 
 .float-left {

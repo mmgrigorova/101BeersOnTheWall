@@ -24,9 +24,28 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: scroll;
-    padding: 30px;
+    padding: 15px 30px;
 }
 
+.modal-image {
+    min-width: 120px;
+    /* display: inline-block; */
+    text-align: center;
+    float: left;
+    padding: 0px 20px 0px 0px;
+}
 .modal-content img{
     height: 300px;
+}
+
+.modal-content .beer-abv{
+    margin-top: 10px;
+}
+
+.modal-content ul{
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    list-style-position: inside;
+    padding-left: 0px;
 }

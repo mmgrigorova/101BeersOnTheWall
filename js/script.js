@@ -34,7 +34,7 @@ $(document).ready(function () {
             })
         );
 
-   
+
         $article.append($("<img />")
             .attr("src", beer.image_url)
             .attr("alt", beer.name)
@@ -106,7 +106,8 @@ $(document).ready(function () {
         var beerItem = getBeer(beerid);
         // console.log(beerItem);
         $(".modal-content .beer-name").html(beerItem.name);
-        $(".modal-content .modal-image").attr("src", beerItem.image_url);
+        $(".modal-content .modal-img")
+            .attr("src", beerItem.image_url);
         $(".modal-content h2").html(beerItem.tagline);
         $(".modal-content .beer-abv").html("ABV: " + beerItem.abv);
         $(".modal-content .beer-description").html(beerItem.description);
