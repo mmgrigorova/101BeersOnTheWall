@@ -70,15 +70,17 @@ nav a {
 
 #beers-container {
     text-align: center;
-    background-color: white;
-    width: 100%;
+    /* background-color: #e5c5b6; */
+    /* width: 90%; */
     overflow: auto;
     display: inline-block;
-    padding: 5px 10px;
     margin: 0px auto;
+    /* position: absolute; */
+    /* left: 50px; */
+    width: calc(100% - 100px);
 }
 
-main a {
+a {
     color: #fa594e;
     text-decoration: none;
     font-weight: bold;
@@ -89,43 +91,35 @@ main a {
 
 .beer-box {
     border-radius: 2px;
-    box-shadow: 0px 0px 15px #d8d8d8;;
-    /* display: inline-block; */
+    box-shadow: 0px 0px 15px #d8d8d8;
+    background-color: white;
     text-align: center;
-    height: 430px;
-    width: 23%;
-    padding: 2% 2%;
-    margin: 5px 5px;
+    height: 450px;
+    padding: 5px 5px;
+    margin: 5px 6.7px;
     position: relative;
     float: left;
+    /* width: 30%; */
+    width: calc(100% / 3 - 2.5% * 3 / 4);
 }
 
-.beer-box:hover{
+.beer-box:hover {
     box-shadow: 0px 0px 15px #a8a8a8;
-
 }
 
-.beer-box:first-of-type {
-    margin-left: 10px;
-}
-
-.beer-box:last-of-type {
-    margin-right: 10px;
-}
-
-#beers-container h1,
+main h1,
 h2,
 h3,
 h4 {
     font-family: 'Oswald', sans-serif;
 }
 
-#beers-container h1 {
+main h1 {
     font-size: 1.5em;
     margin: 0.5em auto 5px auto;
 }
 
-#beers-container h2 {
+main h2 {
     font-size: 1em;
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: normal;
@@ -155,7 +149,7 @@ h4 {
 
 .beer-box img {
     max-height: 220px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .beer-details {
@@ -168,9 +162,16 @@ h4 {
     display: table;
 }
 
+.clarfix-after::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 footer {
     display: block;
-    background-color: #878284;;
+    background-color: #878284;
+    ;
     padding: 5px 0px;
     text-align: center;
     font-size: 0.8em;
@@ -188,15 +189,20 @@ footer p {
     font-style: italic;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1340px) {
+    #beers-container {
+        width: 100%;
+    }
     .beer-box {
-        width: 48%;
+        width: 33%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .beer-box {
+    #beers-container {
         width: 100%;
-        margin: 20px 0px;
+    }
+    .beer-box {
+        width: 95%;
     }
 }

@@ -24,4 +24,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: scroll;
+    padding: 30px;
+}
+
+.modal-content img{
+    height: 300px;
 }

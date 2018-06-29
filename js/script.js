@@ -2,6 +2,7 @@ $(document).ready(function () {
     var endPoint = 'https://api.punkapi.com/v2/';
     // var endPoint = 'file:///test.json';
     var query = 'beers?page=1&per_page=5';
+    // var query = 'beers?page=1&per_page=80';
     // var query = 'beers';
     var url = new URL(endPoint + query);
     // var url = new URL(endPoint);
@@ -107,7 +108,7 @@ $(document).ready(function () {
         $(".modal-content .beer-name").html(beerItem.name);
         $(".modal-content .modal-image").attr("src", beerItem.image_url);
         $(".modal-content h2").html(beerItem.tagline);
-        $(".modal-content .beer-abv").html(beerItem.abv);
+        $(".modal-content .beer-abv").html("ABV: " + beerItem.abv);
         $(".modal-content .beer-description").html(beerItem.description);
         $(".modal-content .beer-tips").html(beerItem.brewers_tips);
         $(".modal-content .food-pair+ul")
