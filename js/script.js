@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var endPoint = 'https://api.punkapi.com/v2/';
     // var endPoint = 'file:///test.json';
-    var query = 'beers?page=1&per_page=5';
+    var query = 'beers?page=1&per_page=80';
     // var query = 'beers?page=1&per_page=80';
     // var query = 'beers';
     var url = new URL(endPoint + query);
