@@ -1,12 +1,6 @@
-    var currentPage = 1;
-
-
-
     $(document).ready(function () {
-        // var query = 'beers?page=1&per_page=80';
-        // var query = 'beers';
         var urlBuilder = (() => {
-            var defaultPerPage = 3;
+            var defaultPerPage = 6;
             var endPoint = 'https://api.punkapi.com/v2/';
             var pageNum = '';
             var currentPage = 0;
@@ -37,7 +31,6 @@
 
                 var query = 'beers?' + pageNum + perPageCount + beerName;
                 var newURL = new URL(endPoint + query);
-                console.log(newURL);
                 return newURL;
             }
 
@@ -87,7 +80,6 @@
 
             var displayFavouritesOnly = false;
             $("a#favourites-call").on("click", function (element) {
-                console.log(element);
                 element.preventDefault();
                 var $beerBox = $(".beer-box");
 
@@ -102,13 +94,13 @@
                     $beerBox.show();
                     displayFavouritesOnly = false;
                 }
-
             });
 
             return {
                 toggleFavourite
             }
         })();
+
         var $previous = $(".previous");
         var $next = $(".next");
         var loader = (() => {
@@ -120,10 +112,7 @@
                 $.getJSON(url, function (data) {
                     beers = [];
                     beers.push(data);
-
-                    console.log(beers);
                     beersCount = beers[0].length;
-                    console.log("beers in loader" + beersCount);
                     if (beersCount > 1) {
                         readBeers(beers);
                         $(".loading-message").remove();
@@ -136,6 +125,7 @@
                 }, "jsonp");
 
             };
+
             var populateBeerContainer = function (beer) {
                 $beerContainer.append(
                     $("<article></article>")
@@ -214,8 +204,6 @@
             var getBeer = function (beerid) {
                 for (var i = 0; i < beers[0].length; i++) {
                     var beer = beers[0][i];
-                    // console.log(beerid);
-                    // console.log(beer);
                     if (beer.id == beerid) {
                         return beer;
                     }
@@ -225,7 +213,6 @@
             var populateModal = function (beerid) {
                 $modal.attr("id", beerid);
                 var beerItem = getBeer(beerid);
-                // console.log(beerItem);
                 $(".modal-content .beer-name").html(beerItem.name);
                 $(".modal-content .modal-img")
                     .attr("src", beerItem.image_url);
@@ -244,11 +231,9 @@
             }
 
             var openModal = function (beerid) {
-                // console.log(beerid);
                 $modal.fadeIn(300);
                 $content.fadeIn(300);
             }
-
 
             var closeHandler = function (event) {
                 var target = $(event.target);
@@ -279,13 +264,11 @@
                     disablePaging($previous);
                 }
 
-                if (urlBuilder.getCurrentPage() > 1){
+                if (urlBuilder.getCurrentPage() > 1) {
                     $previous.removeClass("disabled");
                 }
-                
+
                 if (loader.beersCount < urlBuilder.getDefaultPerPage) {
-                    console.log('beers' + loader.beersCount);
-                    console.log('default' + urlBuilder.defaultPerPage);
                     disablePaging($next);
                 }
             }
@@ -294,12 +277,9 @@
                 var newPage = parseInt(urlBuilder.getCurrentPage()) + parseInt(direction);
                 urlBuilder.setCurrentPage(newPage);
 
-                
                 url = urlBuilder.buildURL(newPage, urlBuilder.getDefaultPerPage(), urlBuilder.getBeerName());
-                console.log(url);
                 $beerContainer.empty;
                 loader.loadBeersFromJSON(url);
-                console.log(urlBuilder.getCurrentPage());
                 initializePaging();
             }
 
@@ -309,7 +289,7 @@
             }
         })();
 
-        var url = urlBuilder.buildURL(urlBuilder.getCurrentPage(),urlBuilder.getDefaultPerPage(),'');
+        var url = urlBuilder.buildURL(urlBuilder.getCurrentPage(), urlBuilder.getDefaultPerPage(), '');
         loader.loadBeersFromJSON(url);
 
         $previous.on("click", function (event) {
@@ -334,7 +314,6 @@
                 url = urlBuilder.buildURL(1, urlBuilder.getDefaultPerPage(), $name);
             }
             loader.loadBeersFromJSON(url);
-            console.log(beers);
         };
 
         var $searchInput = $("#search-input");
@@ -344,6 +323,4 @@
             event.preventDefault();
             searchByName($searchInput);
         });
-
-
     });
