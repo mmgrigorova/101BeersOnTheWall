@@ -111,6 +111,9 @@ a {
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+#beers-container a {
     margin: 30px auto 0px auto;
     display: block;
 }
@@ -219,6 +222,21 @@ main h2 {
     content: "";
     clear: both;
     display: table;
+}
+
+.pagination{
+    margin-bottom: 30px; 
+}
+
+.previous, .next{
+    width: 40%;
+}
+.previous{
+    text-align: left;
+}
+
+.next{
+    text-align: right;
 }
 
 footer {
