@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var endPoint = 'https://api.punkapi.com/v2/';
     // var endPoint = 'file:///test.json';
-    var query = 'beers?page=1&per_page=80';
+    var query = 'beers?page=1&per_page=12';
     // var query = 'beers?page=1&per_page=80';
     // var query = 'beers';
     var url = new URL(endPoint + query);
@@ -171,5 +171,23 @@ $(document).ready(function () {
         }
 
     });
+
+
+    var queryNoParams = 'beers';
+    var urlSearch = new URL(endPoint + queryNoParams);
+
+    var options = {
+        url: "urlSearch",
+
+        getValue: "name",
+        dataType: "jsonp",
+        list: {
+            match: {
+                enabled: true
+            }
+        }
+    };
+
+    $("#basics").easyAutocomplete(options);
 
 });
