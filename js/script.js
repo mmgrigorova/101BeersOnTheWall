@@ -1,20 +1,21 @@
 $(document).ready(function () {
     var endPoint = 'https://api.punkapi.com/v2/';
-    // var endPoint = 'file:///test.json';
     var query = 'beers?page=1&per_page=12';
     // var query = 'beers?page=1&per_page=80';
     // var query = 'beers';
     var url = new URL(endPoint + query);
-    // var url = new URL(endPoint);
 
     var beers = [];
-    var foodPair = 'This beer will go perfectly with:';
 
-    $.getJSON(url, function (data) {
-        beers.push(data);
-        console.log('success');
-        readBeers(beers);
-    }, "jsonp");
+    var getBeersFromJSON = function (url) {
+        $.getJSON(url, function (data) {
+            beers.push(data);
+            console.log('success');
+            readBeers(beers);
+        }, "jsonp")
+    };
+
+    getBeersFromJSON(url);
 
     var populateBeerContainer = function (beer) {
         $("#beers-container").append(
@@ -74,11 +75,10 @@ $(document).ready(function () {
     }
 
     function readBeers(beers) {
+        $("#beers-container").empty();
         if (beers) {
-            // console.log(beers);
             for (var i = 0; i < beers[0].length; i++) {
                 var beer = beers[0][i];
-                // console.log(beer.name);
                 populateBeerContainer(beer);
             }
         }
@@ -87,6 +87,7 @@ $(document).ready(function () {
     //
     // Modal Handler
     //
+
     var $modal = $(".modal-background");
     var $content = $(".modal-content");
 
@@ -128,13 +129,22 @@ $(document).ready(function () {
         $content.fadeIn(300);
     }
 
-    $modal.on("click", function (event) {
+
+    var closeHandler = function (event) {
         var target = $(event.target);
-        if (target.is($modal)) {
+        if (target.is($modal) || event.which == 27) {
             $content.fadeOut(300);
             $modal.fadeOut(300);
-        }
-    });
+        };
+    };
+
+    $modal.on("click", closeHandler);
+    $(document).on("keyup", closeHandler);
+
+
+    //
+    // Favourites handler
+    //
 
     var toggleFavourite = function (beerid) {
         var $beer = $("#" + beerid);
@@ -172,22 +182,9 @@ $(document).ready(function () {
 
     });
 
+    //
+    // Search handler
+    //
 
-    var queryNoParams = 'beers';
-    var urlSearch = new URL(endPoint + queryNoParams);
-
-    var options = {
-        url: "urlSearch",
-
-        getValue: "name",
-        dataType: "jsonp",
-        list: {
-            match: {
-                enabled: true
-            }
-        }
-    };
-
-    $("#basics").easyAutocomplete(options);
-
+    var $search = $("search-input");
 });
