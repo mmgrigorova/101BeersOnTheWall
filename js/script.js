@@ -7,18 +7,21 @@ $(document).ready(function () {
 
     var beers = [];
     var $beerContainer = $("#beers-container");
-    var $loadingMessage = "<p class='loading-message'>We are getting your beers...</p>";
-    var $noResultMessage = "<p class='no-result-message'>We are getting your beers...</p>"
+    var $loadingMessage = "<p class='loading-message'><i class='fas fa-spinner'></i> We are getting your beers...</p>";
+    var $noResultMessage = "<div class='no-result-message'><p><i class='far fa-frown'></i> Sorry</p><p>No beers have been found.</p></div>"
 
     var loadBeersFromJSON = function (url) {
         $beerContainer.html($loadingMessage);
         $.getJSON(url, function (data) {
+            beers = [];
             beers.push(data);
             console.log('success');
-            if (data.length > 0) {
+            console.log(beers);
+            if (beers[0].length > 1) {
                 readBeers(beers);
                 $(".loading-message").remove();
             } else {
+                console.log("No beers :(");
                 $beerContainer.html($noResultMessage);
             }
         }, "jsonp")
@@ -205,9 +208,6 @@ $(document).ready(function () {
         } else {
             loadBeersFromJSON(searchURL);
         }
-        // if(response.length === []){
-        //     $beerContainer.html("<p>Sorry :(</p><p> No beers with this name have been found</p>");
-        // }
         console.log(beers);
 
 

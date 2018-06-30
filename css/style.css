@@ -258,6 +258,10 @@ footer a{
     display: inline-block;
 }
 
+.no-result-message, .loading-message{
+    margin-bottom: 30px;
+}
+
 @media screen and (max-width: 1340px) {
     #beers-container {
         width: 100%;
