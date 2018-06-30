@@ -6,19 +6,28 @@ $(document).ready(function () {
     var url = new URL(endPoint + query);
 
     var beers = [];
+    var $beerContainer = $("#beers-container");
+    var $loadingMessage = "<p class='loading-message'>We are getting your beers...</p>";
+    var $noResultMessage = "<p class='no-result-message'>We are getting your beers...</p>"
 
-    var getBeersFromJSON = function (url) {
+    var loadBeersFromJSON = function (url) {
+        $beerContainer.html($loadingMessage);
         $.getJSON(url, function (data) {
             beers.push(data);
             console.log('success');
-            readBeers(beers);
+            if (data.length > 0) {
+                readBeers(beers);
+                $(".loading-message").remove();
+            } else {
+                $beerContainer.html($noResultMessage);
+            }
         }, "jsonp")
     };
 
-    getBeersFromJSON(url);
+    loadBeersFromJSON(url);
 
     var populateBeerContainer = function (beer) {
-        $("#beers-container").append(
+        $beerContainer.append(
             $("<article></article>")
             .addClass("beer-box")
             .attr("id", beer.id)
@@ -75,10 +84,9 @@ $(document).ready(function () {
     }
 
     function readBeers(beers) {
-        $("#beers-container").empty();
         if (beers) {
             for (var i = 0; i < beers[0].length; i++) {
-                var beer = beers[0][i];
+                var beer = beers[beers.length - 1][i];
                 populateBeerContainer(beer);
             }
         }
@@ -141,7 +149,6 @@ $(document).ready(function () {
     $modal.on("click", closeHandler);
     $(document).on("keyup", closeHandler);
 
-
     //
     // Favourites handler
     //
@@ -186,5 +193,31 @@ $(document).ready(function () {
     // Search handler
     //
 
-    var $search = $("search-input");
+    var searchByName = function (element) {
+
+        var $name = element.val();
+        var nameQuery = "beers?page=1&per_page=80&beer_name=" + $name;
+        var searchURL = endPoint + nameQuery;
+
+        $beerContainer.empty();
+        if ($name === '') {
+            loadBeersFromJSON(url);
+        } else {
+            loadBeersFromJSON(searchURL);
+        }
+        // if(response.length === []){
+        //     $beerContainer.html("<p>Sorry :(</p><p> No beers with this name have been found</p>");
+        // }
+        console.log(beers);
+
+
+    };
+
+    var $searchInput = $("#search-input");
+    var $search = $("#search");
+
+    $search.on("click", function (event) {
+        event.preventDefault();
+        searchByName($searchInput);
+    });
 });
