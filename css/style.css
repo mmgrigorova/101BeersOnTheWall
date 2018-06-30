@@ -237,6 +237,7 @@ footer p, {
 footer a{
     margin: 0px 0px;
     display: inline;
+    color: #d8d8d8;
 }
 .center {
     text-align: center;
