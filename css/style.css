@@ -67,7 +67,7 @@ nav a, nav ul {
     /* color:#e5c5b6; */
     color: white;
     text-decoration: none;
-    margin: 0px 0px;
+    margin: 0px 5px;
     vertical-align: middle;
 }
 
@@ -114,8 +114,13 @@ a {
 }
 
 #beers-container a {
-    margin: 30px auto 0px auto;
+    margin: 20px auto 0px auto;
     display: block;
+    /* border: 1px solid #fa594e; */
+    padding: 10px 0px;
+    /* background-color: #fa594e;
+    color: white; */
+    font-weight: bold;
 }
 
 .beer-box {
