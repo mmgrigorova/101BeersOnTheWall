@@ -23,9 +23,16 @@
                 setDefaultPerPage(urlParams.perPageCountParam);
                 setBeerName(urlParams.beerNameParam);
                 setFoodString(urlParams.foodStringParam);
-                
 
-                var query = 'beers?' + pageNum + perPageCount + beerName + foodString;
+
+                var query = 'beers?' + pageNum + perPageCount;
+                if (beerName != ''){
+                    query += '&beer_name=' + beerName;
+                }
+
+                if (foodString != ''){
+                    query += '&food=' + foodString;
+                }
                 var newURL = new URL(endPoint + query);
                 return newURL;
             }
@@ -48,7 +55,7 @@
                 return defaultPerPage;
             }
 
-            var setDefaultPerPage = function(newDefaultPerPage){
+            var setDefaultPerPage = function (newDefaultPerPage) {
                 if (newDefaultPerPage != defaultPerPage) {
                     perPageCount = '&per_page=' + newDefaultPerPage;
                 } else {
@@ -60,11 +67,11 @@
                 return beerName;
             }
 
-            var setBeerName = function(newBeerName){
+            var setBeerName = function (newBeerName) {
                 if (newBeerName === undefined || newBeerName === '') {
                     beerName = '';
                 } else {
-                    beerName = '&beer_name=' + newBeerName;
+                    beerName = newBeerName;
                 }
             }
 
@@ -72,11 +79,11 @@
                 return foodString;
             }
 
-            var setFoodString = function(newFoodString){
+            var setFoodString = function (newFoodString) {
                 if (newFoodString === undefined || newFoodString === '') {
                     foodString = '';
                 } else {
-                    foodString = '&food=' + newFoodString;
+                    foodString = newFoodString;
                 }
             }
 
@@ -85,7 +92,9 @@
                 setCurrentPage,
                 getCurrentPage,
                 getDefaultPerPage,
+                setBeerName,
                 getBeerName,
+                setFoodString,
                 getFoodString,
                 buildURL
             }
@@ -308,14 +317,13 @@
             var getPage = function (direction) {
                 var newPage = parseInt(urlBuilder.getCurrentPage()) + parseInt(direction);
                 urlBuilder.setCurrentPage(newPage);
-
                 var urlObj = {
                     pageNumParam: newPage,
                     perPageCountParam: urlBuilder.getDefaultPerPage(),
                     beerNameParam: urlBuilder.getBeerName(),
                     foodStringParam: urlBuilder.getFoodString()
                 };
-
+                
                 url = urlBuilder.buildURL(urlObj);
                 $beerContainer.empty;
                 loader.loadBeersFromJSON(url);
@@ -349,22 +357,34 @@
         $modal.on("click", modal.closeHandler);
         $(document).on("keyup", modal.closeHandler);
 
-        var searchByName = function (element) {
+        var searchByName = function (element, option) {
             var nameValue = element.val();
             var $name = nameValue.split(' ').join('_');
             console.log($name);
             var urlObj = {
                 pageNumParam: 1,
                 perPageCountParam: urlBuilder.getDefaultPerPage(),
+                beerNameParam: '',
                 foodStringParam: ''
             };
 
             $beerContainer.empty();
-            if ($name === '') {
-                urlObj.beerNameParam = '';
-            } else {
+
+            if (option === 'beer') {
+                urlObj.foodStringParam = '';
+                urlBuilder.setFoodString('');
+
                 urlObj.beerNameParam = $name;
+                urlBuilder.setBeerName($name);
             }
+            if (option === 'food') {
+                urlObj.foodStringParam = $name;
+                urlBuilder.setFoodString($name);
+
+                urlObj.beerNameParam = '';
+                urlBuilder.setBeerName('');
+            }
+
             url = urlBuilder.buildURL(urlObj);
             loader.loadBeersFromJSON(url);
         };
@@ -374,6 +394,14 @@
 
         $search.on("click", function (event) {
             event.preventDefault();
-            searchByName($searchInput);
+            $selectedOption = $(".search-option:checked").attr("id");
+            var option = 0;
+            if ($selectedOption === "search-for-beer") {
+                option = "beer";
+            }
+            if ($selectedOption === "search-for-food") {
+                option = "food";
+            }
+            searchByName($searchInput, option);
         });
     });
