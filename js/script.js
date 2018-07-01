@@ -6,30 +6,26 @@
             var currentPage = 0;
             var perPageCount = '';
             var beerName = '';
+            var foodString = '';
 
-            var buildURL = function (pageNumParam, perPageCountParam, beerNameParam) {
+            // var urlParams = {
+            //     pageNumParam,
+            //     perPageCountParam,
+            //     beerNameParam,
+            //     foodStringParam
+            // }
+            var buildURL = function (urlParams) {
+                console.log("urlParams");
+                console.log(urlParams);
                 beerName = '';
-                if (pageNumParam > 1) {
-                    pageNum = 'page=' + pageNumParam;
-                    setCurrentPage(pageNumParam);
-                } else {
-                    pageNum = 'page=' + 1;
-                    setCurrentPage(1);
-                }
 
-                if (perPageCountParam) {
-                    perPageCount = '&per_page=' + perPageCountParam;
-                } else {
-                    perPageCount = '&per_page=' + defaultPerPage;
-                }
+                setCurrentPage(urlParams.pageNumParam);
+                setDefaultPerPage(urlParams.perPageCountParam);
+                setBeerName(urlParams.beerNameParam);
+                setFoodString(urlParams.foodStringParam);
+                
 
-                if (beerNameParam === undefined || beerNameParam === '') {
-                    beerName = '';
-                } else {
-                    beerName = '&beer_name=' + beerNameParam;
-                }
-
-                var query = 'beers?' + pageNum + perPageCount + beerName;
+                var query = 'beers?' + pageNum + perPageCount + beerName + foodString;
                 var newURL = new URL(endPoint + query);
                 return newURL;
             }
@@ -39,22 +35,58 @@
             }
 
             var setCurrentPage = function (currentPageNum) {
-                currentPage = currentPageNum;
+                if (currentPageNum > 1) {
+                    pageNum = 'page=' + currentPageNum;
+                    currentPage = currentPageNum
+                } else {
+                    pageNum = 'page=' + 1;
+                    currentPage = 1;
+                }
             }
 
             var getDefaultPerPage = function () {
                 return defaultPerPage;
             }
 
+            var setDefaultPerPage = function(newDefaultPerPage){
+                if (newDefaultPerPage != defaultPerPage) {
+                    perPageCount = '&per_page=' + newDefaultPerPage;
+                } else {
+                    perPageCount = '&per_page=' + defaultPerPage;
+                }
+            }
+
             var getBeerName = function () {
                 return beerName;
             }
+
+            var setBeerName = function(newBeerName){
+                if (newBeerName === undefined || newBeerName === '') {
+                    beerName = '';
+                } else {
+                    beerName = '&beer_name=' + newBeerName;
+                }
+            }
+
+            var getFoodString = function () {
+                return foodString;
+            }
+
+            var setFoodString = function(newFoodString){
+                if (newFoodString === undefined || newFoodString === '') {
+                    foodString = '';
+                } else {
+                    foodString = '&food=' + newFoodString;
+                }
+            }
+
 
             return {
                 setCurrentPage,
                 getCurrentPage,
                 getDefaultPerPage,
                 getBeerName,
+                getFoodString,
                 buildURL
             }
         })();
@@ -277,7 +309,14 @@
                 var newPage = parseInt(urlBuilder.getCurrentPage()) + parseInt(direction);
                 urlBuilder.setCurrentPage(newPage);
 
-                url = urlBuilder.buildURL(newPage, urlBuilder.getDefaultPerPage(), urlBuilder.getBeerName());
+                var urlObj = {
+                    pageNumParam: newPage,
+                    perPageCountParam: urlBuilder.getDefaultPerPage(),
+                    beerNameParam: urlBuilder.getBeerName(),
+                    foodStringParam: urlBuilder.getFoodString()
+                };
+
+                url = urlBuilder.buildURL(urlObj);
                 $beerContainer.empty;
                 loader.loadBeersFromJSON(url);
                 initializePaging();
@@ -289,7 +328,13 @@
             }
         })();
 
-        var url = urlBuilder.buildURL(urlBuilder.getCurrentPage(), urlBuilder.getDefaultPerPage(), '');
+        var urlObj = {
+            pageNumParam: urlBuilder.getCurrentPage(),
+            perPageCountParam: urlBuilder.getDefaultPerPage(),
+            beerNameParam: urlBuilder.getBeerName(),
+            foodStringParam: urlBuilder.getFoodString()
+        };
+        var url = urlBuilder.buildURL(urlObj);
         loader.loadBeersFromJSON(url);
 
         $previous.on("click", function (event) {
@@ -308,15 +353,19 @@
             var nameValue = element.val();
             var $name = nameValue.split(' ').join('_');
             console.log($name);
+            var urlObj = {
+                pageNumParam: 1,
+                perPageCountParam: urlBuilder.getDefaultPerPage(),
+                foodStringParam: ''
+            };
 
             $beerContainer.empty();
             if ($name === '') {
-                url = urlBuilder.buildURL(1, urlBuilder.getDefaultPerPage(), '');
+                urlObj.beerNameParam = '';
             } else {
-                console.log(url);
-                url = urlBuilder.buildURL(1, urlBuilder.getDefaultPerPage(), $name);
+                urlObj.beerNameParam = $name;
             }
-            
+            url = urlBuilder.buildURL(urlObj);
             loader.loadBeersFromJSON(url);
         };
 
