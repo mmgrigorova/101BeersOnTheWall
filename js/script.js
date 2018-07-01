@@ -23,10 +23,10 @@
                     perPageCount = '&per_page=' + defaultPerPage;
                 }
 
-                if (beerNameParam === undefined) {
-                    beerName = '&beer_name=' + beerNameParam;
-                } else {
+                if (beerNameParam === undefined || beerNameParam === '') {
                     beerName = '';
+                } else {
+                    beerName = '&beer_name=' + beerNameParam;
                 }
 
                 var query = 'beers?' + pageNum + perPageCount + beerName;
@@ -305,14 +305,18 @@
         $(document).on("keyup", modal.closeHandler);
 
         var searchByName = function (element) {
-            var $name = element.val();
+            var nameValue = element.val();
+            var $name = nameValue.split(' ').join('_');
+            console.log($name);
 
             $beerContainer.empty();
             if ($name === '') {
                 url = urlBuilder.buildURL(1, urlBuilder.getDefaultPerPage(), '');
             } else {
+                console.log(url);
                 url = urlBuilder.buildURL(1, urlBuilder.getDefaultPerPage(), $name);
             }
+            
             loader.loadBeersFromJSON(url);
         };
 
