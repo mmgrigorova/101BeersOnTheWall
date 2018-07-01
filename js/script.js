@@ -8,12 +8,6 @@
             var beerName = '';
             var foodString = '';
 
-            // var urlParams = {
-            //     pageNumParam,
-            //     perPageCountParam,
-            //     beerNameParam,
-            //     foodStringParam
-            // }
             var buildURL = function (urlParams) {
                 console.log("urlParams");
                 console.log(urlParams);
@@ -26,11 +20,11 @@
 
 
                 var query = 'beers?' + pageNum + perPageCount;
-                if (beerName != ''){
+                if (beerName != '') {
                     query += '&beer_name=' + beerName;
                 }
 
-                if (foodString != ''){
+                if (foodString != '') {
                     query += '&food=' + foodString;
                 }
                 var newURL = new URL(endPoint + query);
@@ -214,19 +208,25 @@
                     .attr("href", "")
                     .html("more info")
                     .on("click", function (e) {
-                        console.log($beerid);
-                        var $beerid = $(this).parent().attr("id");
                         e.preventDefault();
+                        var $beerid = $(this).parent().attr("id");
                         modal.populateModal($beerid);
                         modal.openModal($beerid);
                     })
 
                 );
+
+                $(".beer-box *").on("click", function (e) {
+                    e.preventDefault();
+                    var $beerid = $(this).parent().attr("id");
+                    modal.populateModal($beerid);
+                    modal.openModal($beerid);
+                });
             }
 
             function readBeers(beers) {
                 if (beers) {
-                    for (var i = 0; i < beers[0].length; i++) {
+                    for (var i = 0; i < beers[beers.length - 1].length; i++) {
                         var beer = beers[beers.length - 1][i];
                         populateBeerContainer(beer);
                     }
@@ -262,8 +262,10 @@
                 $(".modal-content .beer-description").html(beerItem.description);
                 $(".modal-content .beer-tips").html(beerItem.brewers_tips);
                 $(".modal-content .food-pair+ul")
+                    .empty()
                     .html(function () {
                         beerItem.food_pairing.forEach(element => {
+                            console.log(beerItem);
                             $("<li></li>")
                                 .html(element)
                                 .appendTo(".food-pair+ul")
@@ -323,7 +325,7 @@
                     beerNameParam: urlBuilder.getBeerName(),
                     foodStringParam: urlBuilder.getFoodString()
                 };
-                
+
                 url = urlBuilder.buildURL(urlObj);
                 $beerContainer.empty;
                 loader.loadBeersFromJSON(url);
@@ -404,4 +406,6 @@
             }
             searchByName($searchInput, option);
         });
+
+
     });
