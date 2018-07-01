@@ -11,4 +11,4 @@ or if you are making dinner and are not sure which beer will go best with the fo
 
 You can mark your favourite beers, get detailed description for tens of beers and also check out some tips from the brewery itself!
 
-Check it out on the [live preview](https://mmgrigorova.github.io/101BeersOnTheWall/).
+[Check it out!](https://mmgrigorova.github.io/101BeersOnTheWall/)
