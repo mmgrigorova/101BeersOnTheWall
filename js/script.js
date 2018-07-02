@@ -214,7 +214,7 @@
 
                 );
 
-                $(".beer-box *").on("click", function (e) {
+                $(".beer-box img").on("click", function (e) {
                     e.preventDefault();
                     var $beerid = $(this).parent().attr("id");
                     modal.populateModal($beerid);
