@@ -9,8 +9,6 @@
             var foodString = '';
 
             var buildURL = function (urlParams) {
-                console.log("urlParams");
-                console.log(urlParams);
                 beerName = '';
 
                 setCurrentPage(urlParams.pageNumParam);
@@ -265,7 +263,6 @@
                     .empty()
                     .html(function () {
                         beerItem.food_pairing.forEach(element => {
-                            console.log(beerItem);
                             $("<li></li>")
                                 .html(element)
                                 .appendTo(".food-pair+ul")
@@ -280,7 +277,7 @@
 
             var closeHandler = function (event) {
                 var target = $(event.target);
-                if (target.is($modal) || event.which == 27) {
+                if (target.is($modal) || event.keyCode === 27) {
                     $content.fadeOut(300);
                     $modal.fadeOut(300);
                 };
@@ -374,7 +371,10 @@
             };
 
             var excuteSearch = function (event) {
-                event.preventDefault();
+                if (event){
+                    event.preventDefault();
+                }
+                
                 $selectedOption = $(".search-option:checked").attr("id");
                 var option = 0;
                 if ($selectedOption === "search-for-beer") {
@@ -410,15 +410,22 @@
             paging.getPage(1);
         });
 
-        // var eventPicker = function(event){
-        //     if 
-        // }
 
         $modal.on("click", modal.closeHandler);
-        $(document).on("keyup", modal.closeHandler);
+        $(document).on("keyup", function (event) {
+            if (event.keyCode === 27) {
+                console.log("here");
+                modal.closeHandler(event);
+            }
+        });
 
         var $search = $("#search");
         $search.on("click", searcher.excuteSearch);
+        $(document).on("keyup",  function (event){
+            if (event.keyCode === 13){
+                searcher.excuteSearch();
+            }
+        } );
 
 
     });
