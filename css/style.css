@@ -249,18 +249,6 @@ main h2 {
     display: none;
 }
 
-.clearfix::before {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.clarfix-after::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
 .pagination {
     margin-bottom: 30px;
 }
@@ -287,7 +275,7 @@ main h2 {
     background-position-y: -350px;
     background-size: cover;
     min-height: 200px;
-    padding-top: 80px; 
+    padding-top: 50px; 
     position: relative;
 }
 
@@ -317,6 +305,11 @@ main h2 {
 .features{
     list-style: none;
     padding: 0px;
+}
+
+.features-header{
+    color: white;
+    margin: 0px;
 }
 
 .features li{
@@ -359,6 +352,17 @@ footer a {
     color:white;
 }
 
+.clearfix::before {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.clarfix-after::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 
 .center {
