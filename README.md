@@ -8,7 +8,7 @@ or if you are making dinner and are not sure which beer will go best with the fo
 
 ... then you'll enjoy this Brewdog beers library.
 
-The Brewdog Catalog features:
+### The Brewdog Catalog features:
 * search beers by name or type - if you are looking specifically for the "Russian Doll" information or want to browse all pale ales, stouts etc
 * search beers by specifying the food you need to pair them to - wrap up your meal with the perfect beer
 * mark your favourite beers
