@@ -426,6 +426,4 @@
                 searcher.excuteSearch();
             }
         } );
-
-
     });
