@@ -338,6 +338,60 @@
             }
         })();
 
+        var searcher = (() => {
+            var $searchInput = $("#search-input");
+
+            var searchByName = function (element, option) {
+                var nameValue = element.val();
+                var $name = nameValue.split(' ').join('_');
+                console.log($name);
+                var urlObj = {
+                    pageNumParam: 1,
+                    perPageCountParam: urlBuilder.getDefaultPerPage(),
+                    beerNameParam: '',
+                    foodStringParam: ''
+                };
+
+                $beerContainer.empty();
+
+                if (option === 'beer') {
+                    urlObj.foodStringParam = '';
+                    urlBuilder.setFoodString('');
+
+                    urlObj.beerNameParam = $name;
+                    urlBuilder.setBeerName($name);
+                }
+                if (option === 'food') {
+                    urlObj.foodStringParam = $name;
+                    urlBuilder.setFoodString($name);
+
+                    urlObj.beerNameParam = '';
+                    urlBuilder.setBeerName('');
+                }
+
+                url = urlBuilder.buildURL(urlObj);
+                loader.loadBeersFromJSON(url);
+            };
+
+            var excuteSearch = function (event) {
+                event.preventDefault();
+                $selectedOption = $(".search-option:checked").attr("id");
+                var option = 0;
+                if ($selectedOption === "search-for-beer") {
+                    option = "beer";
+                }
+                if ($selectedOption === "search-for-food") {
+                    option = "food";
+                }
+                searchByName($searchInput, option);
+            };
+
+            return {
+                excuteSearch
+            }
+        })();
+
+
         var urlObj = {
             pageNumParam: urlBuilder.getCurrentPage(),
             perPageCountParam: urlBuilder.getDefaultPerPage(),
@@ -356,56 +410,15 @@
             paging.getPage(1);
         });
 
+        // var eventPicker = function(event){
+        //     if 
+        // }
+
         $modal.on("click", modal.closeHandler);
         $(document).on("keyup", modal.closeHandler);
 
-        var searchByName = function (element, option) {
-            var nameValue = element.val();
-            var $name = nameValue.split(' ').join('_');
-            console.log($name);
-            var urlObj = {
-                pageNumParam: 1,
-                perPageCountParam: urlBuilder.getDefaultPerPage(),
-                beerNameParam: '',
-                foodStringParam: ''
-            };
-
-            $beerContainer.empty();
-
-            if (option === 'beer') {
-                urlObj.foodStringParam = '';
-                urlBuilder.setFoodString('');
-
-                urlObj.beerNameParam = $name;
-                urlBuilder.setBeerName($name);
-            }
-            if (option === 'food') {
-                urlObj.foodStringParam = $name;
-                urlBuilder.setFoodString($name);
-
-                urlObj.beerNameParam = '';
-                urlBuilder.setBeerName('');
-            }
-
-            url = urlBuilder.buildURL(urlObj);
-            loader.loadBeersFromJSON(url);
-        };
-
-        var $searchInput = $("#search-input");
         var $search = $("#search");
-
-        $search.on("click", function (event) {
-            event.preventDefault();
-            $selectedOption = $(".search-option:checked").attr("id");
-            var option = 0;
-            if ($selectedOption === "search-for-beer") {
-                option = "beer";
-            }
-            if ($selectedOption === "search-for-food") {
-                option = "food";
-            }
-            searchByName($searchInput, option);
-        });
+        $search.on("click", searcher.excuteSearch);
 
 
     });
