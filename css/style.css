@@ -283,7 +283,7 @@ main h2 {
     /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, .6)), url("https://images.unsplash.com/uploads/1412876363615cd8b2122/cd54d92f"); */
     /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, .3)), url("https://images.unsplash.com/photo-1483965907773-04d18dd757c9"); */
     /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .4)), url("https://images.unsplash.com/photo-1470754260170-299cad39501f"); */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url("https://images.unsplash.com/photo-1488409688217-e6053b1e8f42");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url("resources/PatrickTomasso.jpg");
     background-position-y: -350px;
     background-size: cover;
     min-height: 200px;
