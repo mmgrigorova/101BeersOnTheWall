@@ -288,6 +288,7 @@ main h2 {
     background-size: cover;
     min-height: 200px;
     padding-top: 80px; 
+    position: relative;
 }
 
 .about-section *{
