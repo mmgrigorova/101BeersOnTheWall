@@ -1,7 +1,3 @@
-/* header{
-    display: none;
-} */
-
 body {
     margin: 0px 0px 0px 0px;
     font-family: 'Lato', sans-serif;
@@ -94,13 +90,9 @@ nav .icon {
 
 #beers-container {
     text-align: center;
-    /* background-color: #e5c5b6; */
-    /* width: 90%; */
     overflow: auto;
     display: inline-block;
     margin: 0px auto 20px auto;
-    /* position: absolute; */
-    /* left: 50px; */
     width: calc(100% - 100px);
 }
 
@@ -114,16 +106,13 @@ a {
 #beers-container a {
     margin: 20px auto 0px auto;
     display: block;
-    /* border: 1px solid #fa594e; */
     padding: 10px 0px;
-    /* background-color: #fa594e;
-    color: white; */
     font-weight: bold;
 }
 
 .beer-box {
     border-radius: 2px;
-    box-shadow: 0px 0px 15px #d8d8d8;
+    box-shadow: 0px 0px 5px #d8d8d8;
     background-color: white;
     text-align: center;
     height: 450px;
@@ -131,7 +120,6 @@ a {
     margin: 5px 6.7px;
     position: relative;
     float: left;
-    /* width: 30%; */
     width: calc(100% / 3 - 2.5% * 3 / 4);
 }
 
@@ -162,7 +150,6 @@ main h2 {
 .search-beer {
     margin: 10px auto 40px auto;
     vertical-align: middle;
-    /* height: 100px; */
 }
 
 .search-beer form {
@@ -266,24 +253,21 @@ main h2 {
     text-align: right;
 }
 
-.about-section{
+.about-section {
     color: white;
-    /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, .6)), url("https://images.unsplash.com/uploads/1412876363615cd8b2122/cd54d92f"); */
-    /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, .3)), url("https://images.unsplash.com/photo-1483965907773-04d18dd757c9"); */
-    /* background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .4)), url("https://images.unsplash.com/photo-1470754260170-299cad39501f"); */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url("resources/PatrickTomasso.jpg");
     background-position-y: -350px;
     background-size: cover;
     min-height: 200px;
-    padding-top: 50px; 
+    padding-top: 50px;
     position: relative;
 }
 
-.about-section *{
-    vertical-align:middle;
+.about-section * {
+    vertical-align: middle;
 }
 
-.credits{
+.credits {
     display: inline;
     position: absolute;
     bottom: 0;
@@ -291,7 +275,6 @@ main h2 {
     color: black;
     font-size: 0.5em;
 }
-
 
 .about-text {
     width: 100%;
@@ -302,17 +285,17 @@ main h2 {
     position: relative;
 }
 
-.features{
+.features {
     list-style: none;
     padding: 0px;
 }
 
-.features-header{
+.features-header {
     color: white;
     margin: 0px;
 }
 
-.features li{
+.features li {
     vertical-align: top;
     text-align: center;
     display: inline-block;
@@ -321,14 +304,15 @@ main h2 {
     width: 150px;
 }
 
-.features li:first-of-type{
+.features li:first-of-type {
     margin-left: 0px;
 }
-.features li:last-of-type{
+
+.features li:last-of-type {
     margin-right: 0px;
 }
 
-.features i{
+.features i {
     font-size: 2em;
     margin-bottom: 15px;
 }
@@ -349,7 +333,7 @@ footer p,
 footer a {
     margin: 0px 0px;
     display: inline;
-    color:white;
+    color: white;
 }
 
 .clearfix::before {
@@ -363,7 +347,6 @@ footer a {
     clear: both;
     display: table;
 }
-
 
 .center {
     text-align: center;
