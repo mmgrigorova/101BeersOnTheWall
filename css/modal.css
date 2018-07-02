@@ -27,6 +27,12 @@
     padding: 15px 30px;
 }
 
+.modal-content i{
+    margin-right: 5px;
+    color: #a8a8a8;
+    font-size: 16px;
+}
+
 .modal-image {
     min-width: 120px;
     /* display: inline-block; */
