@@ -371,10 +371,10 @@
             };
 
             var excuteSearch = function (event) {
-                if (event){
+                if (event) {
                     event.preventDefault();
                 }
-                
+
                 $selectedOption = $(".search-option:checked").attr("id");
                 var option = 0;
                 if ($selectedOption === "search-for-beer") {
@@ -421,9 +421,23 @@
 
         var $search = $("#search");
         $search.on("click", searcher.excuteSearch);
-        $(document).on("keyup",  function (event){
-            if (event.keyCode === 13){
+        $(document).on("keyup", function (event) {
+            if (event.keyCode === 13) {
                 searcher.excuteSearch();
             }
-        } );
+        });
+
+        $('a[href="#top"]').on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: $("#top").offset().top
+            }, 500, 'swing');
+        });
+
+        $('a[href="#features-anchor"]').on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: $("#features-anchor").offset().top
+            }, 500, 'swing');
+        });
     });

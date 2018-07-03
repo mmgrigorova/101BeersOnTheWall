@@ -300,7 +300,7 @@ main h2 {
     text-align: center;
     display: inline-block;
     min-height: 50px;
-    margin: 0 2%;
+    margin: 0 2% 6% 0;
     width: 150px;
 }
 
@@ -384,7 +384,7 @@ footer a {
         width: 100%;
     }
     .beer-box {
-        width: 33%;
+        width: 47%;
     }
     header {
         background-position: 0px;
